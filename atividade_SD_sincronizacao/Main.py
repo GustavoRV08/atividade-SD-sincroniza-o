@@ -14,7 +14,7 @@ for i in range(num, len(processos)):
 
 
 for i in range(num, len(processos)):
-    Servicos.eleicao_valentao(processos, num)
+    Servicos.eleicao_valentao(processos, i)
 
 Servicos.imprimir_mensagens()
 for i in range(len(processos)):

@@ -18,12 +18,15 @@ def eleicao_valentao(processos, x):
     existe_maior = False
     for i in range(len(processos)):
         if processos[i].ativo == True and processos[i].id > processos[x].id:
+            print(f"comparação atual: {processos[i].id} > {processos[x].id}")
             mensagens.append(processos[i].receber_mensagem(processos[x].enviar_election()))
             mensagens.append(processos[x].receber_mensagem(processos[i].enviar_ok()))
             existe_maior = True
-    if existe_maior == False:
+    if existe_maior == False and processos[x].ativo == True:
+        print(f"id do processo atual: {processos[x].id} || estado: {processos[x].ativo}")
         for i in range(len(processos)):
-            mensagens.append(processos[i].receber_mensagem(processos[x].enviar_coordinator()))
+            if processos[i].ativo == True and processos[i].id != processos[x].id:
+                mensagens.append(processos[i].receber_mensagem(processos[x].enviar_coordinator()))
 
 def imprimir_mensagens():
     for i in range(len(mensagens)):

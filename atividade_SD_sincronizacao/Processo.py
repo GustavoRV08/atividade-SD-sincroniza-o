@@ -22,5 +22,5 @@ class Processo:
         self.mensagensRecebidas.append(msg)
         if msg[:11] == 'COORDINATOR':
             print("entrou no if do receber_mensagem")
-            self.coordenador = int(msg[13:])
+            self.coordenador = int(msg[13:])-1
         return msg + f' P{self.id+1}'
