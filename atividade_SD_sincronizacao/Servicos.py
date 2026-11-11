@@ -18,18 +18,21 @@ def eleicao_valentao(processos, x):
     existe_maior = False
     for i in range(len(processos)):
         if processos[i].ativo == True and processos[i].id > processos[x].id:
-            mensagens.append(processos[i].receber_mensagem(processos[x].enviar_election))
-            mensagens.append(processos[x].receber_mensagem(processos[i].enviar_ok))
+            mensagens.append(processos[i].receber_mensagem(processos[x].enviar_election()))
+            mensagens.append(processos[x].receber_mensagem(processos[i].enviar_ok()))
             existe_maior = True
     if existe_maior == False:
         for i in range(len(processos)):
-            mensagens.append(processos[i].receber_mensagem(processos[x].enviar_coordinator))
+            mensagens.append(processos[i].receber_mensagem(processos[x].enviar_coordinator()))
 
 def imprimir_mensagens():
     for i in range(len(mensagens)):
         print(mensagens[i])
 
-
+def teste(processos):
+    if processos[3].receber_mensagem(processos[2].enviar_ok(1))[:2] == "OK":
+        print(processos[3].receber_mensagem(processos[2].enviar_ok(1)))
+        print("deu certo...?")
 
 
 
