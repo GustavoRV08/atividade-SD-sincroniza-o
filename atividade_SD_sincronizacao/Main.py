@@ -7,6 +7,14 @@ for i in range(len(processos)):
 proc = int(input("Digite o processo para falhar: "))
 Servicos.simular_falha(proc, processos)
 print(f"ID: {processos[proc].id} | Coordenador: {processos[proc].coordenador} | Ativo: {processos[proc].ativo}")
-print(f"ID: {processos[1].id} | Coordenador: {processos[1].coordenador} | Ativo: {processos[1].ativo}")
+num = int(input("Digite o processo para começar a eleição: "))
+for i in range(num, len(processos)):
+    Servicos.eleicao_valentao(processos, num)
+
+Servicos.imprimir_mensagens()
+for i in range(len(processos)):
+    if processos[i].ativo:
+        print(f"Novo coordenador: P{processos[i].coordenador+1}")
+        break
 
 
