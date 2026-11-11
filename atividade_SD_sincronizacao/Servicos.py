@@ -11,6 +11,10 @@ def inicializar(qtde):
         processos.append(Processo.Processo(i, maior))
     return processos
 
+def imprimir_mensagens():
+    for i in range(len(mensagens)):
+        print(mensagens[i])
+
 def simular_falha(i, processos):
     processos[i].ativo = False
 
@@ -28,9 +32,17 @@ def eleicao_valentao(processos, x):
             if processos[i].ativo == True and processos[i].id != processos[x].id:
                 mensagens.append(processos[i].receber_mensagem(processos[x].enviar_coordinator()))
 
-def imprimir_mensagens():
-    for i in range(len(mensagens)):
-        print(mensagens[i])
+def eleicao_anel(processos, x):
+    while True:
+        i = x
+        if i < len(processos):
+            processos[i+1].receber_mensagem(processos[i].enviar_election())
+            i += 1
+        elif i == len(processos):
+            i = 0
+        elif i < processos
+
+
 
 def teste(processos):
     if processos[3].receber_mensagem(processos[2].enviar_ok(1))[:2] == "OK":
